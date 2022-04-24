@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ludo Game</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/polices.css">
+    <link rel="shortcut icon" href="img/old/dé.gif" type="image/x-icon">
+    <meta name="description" content="Vous voulez jouer au Ludo ? Offrez-vous des parties à 2, 3 ou jusqu'à 4 joueurs en simultannés. Capture du pion adverse dans sa maison, auto pilotage de pion etc... Ludo Game, c'est une autre dimension de jeu en ligne. Après le chargement, vous pouvez jouez sans connexion internet">
+    <meta name="author" content="Diamond Plus">
+    <meta name="keywords" content="Ludo, Ludo Game, Ludo Club, Jouer ludo en ligne, Ludo en ligne">
+    <meta name="version" content="3.0.1">
+    <script src="js/all.js"></script>
+</head>
+
+<body onload="loadding()">
+    <audio src="audio/choixpion.mp3" id="choixpion" class="audio"></audio>
+    <audio src="audio/gagnant.mp3" id="gagnant" class="audio"></audio>
+    <audio src="audio/gameready.mp3" id="gameready" class="audio"></audio>
+    <audio src="audio/lancede.mp3" id="lancede" class="audio"></audio>
+    <audio src="audio/pionavancer.mp3" id="pionavancer" class="audio"></audio>
+    <audio src="audio/pionfini.mp3" id="pionfini" class="audio"></audio>
+    <audio src="audio/pionmort.mp3" id="pionmort" class="audio"></audio>
+    <audio src="audio/pionsorticase.mp3" id="pionsorticase" class="audio"></audio>
+    <audio src="audio/generic.mp3" id="generic" loop class="audio"></audio>
+    <audio src="audio/clic.ogg" id="clic" class="audio"></audio>
+    <div class="ctests">
+        <div class="tests">
+            <fieldset class="nomsdesjoueurs">
+                <legend class="hummm">Fin du jeu</legend>
+                <div class="ndjoueurss">
+                    <div class="deuxjoueurs">
+                        
+                    </div>
+                    <div class="troisjoueurs">
+                        
+                    </div>
+                    <div class="catjoueurs">
+    
+                    </div>
+                </div>
+                
+                <div class="buttonn" id="replay"><span onclick="reset_all()">Rejouer</span></div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="menu_game">
+        <div class="le_menu" onclick="menu()">
+            <span class="material-icons tooggle">segment</span>
+            Menu
+        </div>
+        <div class="element_menu">
+            <div class="menu1" onclick="mute('off')">
+                <span class="material-icons sons">volume_up</span> Son : ON
+            </div>
+            <div class="menu3" onclick="document.querySelector('.menu3').style.background = 'rgb(179, 7, 7)';
+            document.querySelector('.menu3').style.boxShadow = '1px 5px 2px rgb(130, 7, 7)';ben('Voulez vous vraiment quitter ?');">
+                <span>Quitter</span>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <header>
+            <div class="player1">
+                <i class="fas fa-user-circle" id="user1"></i>
+                <div class="lancede1">
+                </div>
+            </div>
+            <div class="player2">
+                <i class="fas fa-user-circle" id="user2"></i>
+                <div class="lancede2"></div>
+            </div>
+        </header>
+        <div class="playgame">
+            <div class="maisons1">
+                <div class="maison1">
+                    <span class="nomjoueur1">Elisée</span>
+                    <div class="pion p1">
+                        <div class="j1p1p"><span class="material-icons" id="p1j1">room</span></div>
+                        <div class="j1p2p"><span class="material-icons" id="p2j1">room</span></div>
+                        <div class="j1p3p"><span class="material-icons" id="p3j1">room</span></div>
+                        <div class="j1p4p"><span class="material-icons" id="p4j1">room</span></div>
+                    </div>
+                </div>
+                <div class="groupec2">
+                    <div class="case" id="c7"></div>
+                    <div class="case" id="c8"></div>
+                    <div class="case" id="c9"></div>
+                    <div class="case" id="c10"></div>
+                    <div class="case" id="c11"></div>
+                    <div class="case" id="c12"></div>
+                    <div class="case" id="c13"></div>
+                    <div class="case" id="c14"></div>
+                    <div class="case" id="c15"></div>
+                    <div class="case" id="c16"></div>
+                    <div class="case" id="c17"></div>
+                    <div class="case" id="c18"></div>
+                    <div class="case" id="c19"></div>
+                    <div class="case" id="c58"></div>
+                    <div class="case" id="c59"></div>
+                    <div class="case" id="c60"></div>
+                    <div class="case" id="c61"></div>
+                    <div class="case" id="c62"></div>
+                </div>
+                <div class="maison2">
+                    <span class="nomjoueur2">Joueur 2</span>
+                    <div class="pion p2">
+                        <div class="j2p1p">
+                            <span class="material-icons" id="p1j2">room</span></div>
+                        <div class="j2p2p">
+                            <span class="material-icons" id="p2j2">room</span></div>
+                        <div class="j2p3p">
+                            <span class="material-icons" id="p3j2">room</span></div>
+                        <div class="j2p4p">
+                            <span class="material-icons" id="p4j2">room</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="milieu">
+                <div class="groupec1">
+                    <div class="case" id="c1"></div>
+                    <div class="case" id="c2"></div>
+                    <div class="case" id="c3"></div>
+                    <div class="case" id="c4"></div>
+                    <div class="case" id="c5"></div>
+                    <div class="case" id="c6"></div>
+                    <div class="case" id="c46"></div>
+                    <div class="case" id="c47"></div>
+                    <div class="case" id="c48"></div>
+                    <div class="case" id="c49"></div>
+                    <div class="case" id="c50"></div>
+                    <div class="case" id="c51"></div>
+                    <div class="case" id="c52"></div>
+                    <div class="case" id="c53"></div>
+                    <div class="case" id="c54"></div>
+                    <div class="case" id="c55"></div>
+                    <div class="case" id="c56"></div>
+                    <div class="case" id="c57"></div>
+                </div>
+                <div class="vide"></div>
+                <div class="groupec3">
+                    <div class="case" id="c20"></div>
+                    <div class="case" id="c21"></div>
+                    <div class="case" id="c22"></div>
+                    <div class="case" id="c23"></div>
+                    <div class="case" id="c24"></div>
+                    <div class="case" id="c25"></div>
+                    <div class="case" id="c26"></div>
+                    <div class="case" id="c27"></div>
+                    <div class="case" id="c28"></div>
+                    <div class="case" id="c29"></div>
+                    <div class="case" id="c30"></div>
+                    <div class="case" id="c31"></div>
+                    <div class="case" id="c32"></div>
+                    <div class="case" id="c63"></div>
+                    <div class="case" id="c64"></div>
+                    <div class="case" id="c65"></div>
+                    <div class="case" id="c66"></div>
+                    <div class="case" id="c67"></div>
+                </div>
+            </div>
+            <div class="maisons2">
+                <div class="maison4">
+                    <span class="nomjoueur4">Joueur 4</span>
+                    <div class="pion p4">
+                        <div class="j4p1p">
+                            <span class="material-icons" id="p1j4">room</span></div>
+                        <div class="j4p2p">
+                            <span class="material-icons" id="p2j4">room</span></div>
+                        <div class="j4p3p">
+                            <span class="material-icons" id="p3j4">room</span></div>
+                        <div class="j4p4p">
+                            <span class="material-icons" id="p4j4">room</span></div>
+                    </div>
+                </div>
+                <div class="groupec4">
+                    <div class="case" id="c33"></div>
+                    <div class="case" id="c34"></div>
+                    <div class="case" id="c35"></div>
+                    <div class="case" id="c36"></div>
+                    <div class="case" id="c37"></div>
+                    <div class="case" id="c38"></div>
+                    <div class="case" id="c39"></div>
+                    <div class="case" id="c40"></div>
+                    <div class="case" id="c41"></div>
+                    <div class="case" id="c42"></div>
+                    <div class="case" id="c43"></div>
+                    <div class="case" id="c44"></div>
+                    <div class="case" id="c45"></div>
+                    <div class="case" id="c68"></div>
+                    <div class="case" id="c69"></div>
+                    <div class="case" id="c70"></div>
+                    <div class="case" id="c71"></div>
+                    <div class="case" id="c72"></div>
+                </div>
+                <div class="maison3">
+                    <span class="nomjoueur3">Joueur 3</span>
+                    <div class="pion p3">
+                        <div class="j3p1p">
+                            <span class="material-icons" id="p1j3">room</span></div>
+                        <div class="j3p2p">
+                            <span class="material-icons" id="p2j3">room</span></div>
+                        <div class="j3p3p">
+                            <span class="material-icons" id="p3j3">room</span></div>
+                        <div class="j3p4p">
+                            <span class="material-icons" id="p4j3">room</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="player4">
+                <i class="fas fa-user-circle" id="user4"></i>
+                <div class="lancede4">
+
+                </div>
+            </div>
+            <div class="player3">
+                <i class="fas fa-user-circle" id="user3"></i>
+                <div class="lancede3"></div>
+            </div>
+        </footer>
+    </div>
+    <div class="loadder">
+        <div class="containlogoload">
+            <div class="logojeu"><img src="img/dee.png" class="deee"><br>
+                <span class="ludo">L</span>
+                <span class="ludo">U</span>
+                <span class="ludo">D</span>
+                <span class="ludo">O</span>
+                <span class="club">Game</span>
+            </div>
+        </div>
+        <div class="loadding">
+            <div class="contain_astuces">Astuces : <div class="astuces"></div></div>Chargement...
+            <div class="load">
+                <div class="load_true"></div>
+            </div>
+        </div>
+    </div>
+    <div class="index">
+        <div class="logojeu">
+            <img src="img/dee.png" class="deee"><br>
+            <span class="ludo">L</span>
+            <span class="ludo">U</span>
+            <span class="ludo">D</span>
+            <span class="ludo">O</span>
+            <span class="club">Game</span>
+        </div>
+        <div class="choixtypedejeu">
+            <span class="sxtdj">Choisissez votre mode de jeu</span>
+            <div class="modedejeu">
+                <div class="local" onclick="playlocal()">
+                    <span class="material-icons b33">airplay</span>
+                    Local
+                </div>
+                <div class="ordinateur" onclick="playordi()">
+                    <span class="material-icons b33">app_blocking</span>
+                    Ordinateur
+                </div>
+            </div>
+        </div>
+        <div class="form2">
+            <span class="b222" onclick="retour('.form2','.choixtypedejeu')">
+                <span class="material-icons">keyboard_arrow_left</span> Retour
+            </span>
+            Choisissez le nombre de joueurs :
+            <div class="jo_ordi">
+                <div class="nb_j_or" onclick="jjjordi(2)">
+                    <span class="b11">2</span>
+                    Joueurs
+                </div>
+                <div class="nb_j_or" onclick="jjjordi(3)">
+                    <span class="b11">3</span>
+                    Joueurs
+                </div>
+                <div class="nb_j_or" onclick="jjjordi(4)">
+                    <span class="b11">4</span>
+                    Joueurs
+                </div>
+            </div>
+        </div>
+        <form class="form">
+            <span class="b22" onclick="retour('.form','.choixtypedejeu')">
+                <span class="material-icons">keyboard_arrow_left</span> Retour
+            </span>
+            <fieldset class="nomsdesjoueurs">
+                <legend>Entrer les noms des joueurs</legend>
+                <div class="ndjoueurs">
+                    <div class="part1">
+                        <label for="nomjoueur1">Nom du joueur 1 :</label><br>
+                        <input type="text" name="j1" id="nomjoueur1">
+                    </div>
+                    <div class="part2">
+                        <label for="nomjoueur2">Nom du joueur 2 :</label><br>
+                        <input type="text" name="j2" id="nomjoueur2">
+                    </div>
+                    <div class="part3">
+                        <label for="nomjoueur3">Nom du joueur 3 :</label><br>
+                        <input type="text" name="j3" id="nomjoueur3">
+                    </div>
+                    <div class="part4">
+                        <label for="nomjoueur4">Nom du joueur 4 :</label><br>
+                        <input type="text" name="j4" id="nomjoueur4">
+                    </div>
+                </div>
+                <div class="addorremove">
+                    <div class="add" onclick="ajouterjoueur()"><i class="fas fa-plus" id="ajoutjoueur"></i></div>
+                </div>
+                <div class="button" onclick="determinernombrejoueurs()">Jouer</div>
+            </fieldset>
+        </form>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
